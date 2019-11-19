@@ -7,8 +7,8 @@
 ##### Campus: *Santa Fe*
 
 ##### Integrantes:
-1. *[Poner aquí Nombre y Apellidos del integrante 1]* *[Matrícula]*
-2. *[Poner aquí Nombre y Apellidos del integrante 2]* *[Matrícula]*
+1. *Luis Daniel Roa González*           *A01021960*
+2. *Christian Alberto Dalma Schultz*    *A01423166*
 
 ---
 ## 1. Aspectos generales

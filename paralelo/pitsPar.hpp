@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int Pits(double recorrido, double distancia, double paradas, int gas[])
+int Pits(double recorrido, double distancia, double pits, int gas[])
 {
 
     double contDistancia = 0.0; //Contador de distancia
@@ -14,7 +14,7 @@ int Pits(double recorrido, double distancia, double paradas, int gas[])
     while (contDistancia < recorrido)
     {
 
-        if (alfa < paradas && gas[beta] <= (contDistancia + distancia))
+        if (alfa < pits && gas[beta] <= (contDistancia + distancia))
         {
             contDistancia = gas[beta];
             beta++;
@@ -26,12 +26,12 @@ int Pits(double recorrido, double distancia, double paradas, int gas[])
 
         if (contDistancia < recorrido)
         {
-            alfa++;
+            contDistancia++;
         }
 
     } //fin while
 
-    cout << "Deberá detenerse " << alfa << " veces" << endl;
+    cout << "Deberá detenerse " << contDistancia << " veces" << endl;
 
     return 0;
 };

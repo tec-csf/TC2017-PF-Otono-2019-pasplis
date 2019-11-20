@@ -1,68 +1,66 @@
 #include <iostream>
 #include <stdio.h>
+#include <chrono>
+#include <ctime>
+#include "pitsSec.hpp"
 
+using namespace std::chrono;
 using namespace std;
-
-int Pits(int recorrido, int distancia, int paradas, int gas[]){
-
-  int contDistancia = 0;    //Contador de distancia
-  int alfa = 0;           //contador A
-  int beta = 0;           //contador B
-
-  while (contDistancia < recorrido) {
-
-    if (alfa < paradas && gas[beta] <= (contDistancia + distancia)) {
-      contDistancia = gas[beta];
-      beta++;
-    } //fin loop if en la que se suma la distancia recorrida
-    else{
-      contDistancia += distancia;
-    }
-
-    if (contDistancia < recorrido) {
-      alfa++;
-    }
-
-  }//fin while
-
-  cout << "Deberá detenerse " << alfa << " veces" << endl;
-
-  return 0;
-};
 
 int main() {
 
-  int recorrido;    //distancia total a recorrer
-  int dist;         //distancia que puede recorrer entre gasolineras
-  int paradas;      //cantidad de gasolineras en las que deberá parar
-  int petrol;       //valor de las paradas
+    double pista;       //distancia total de la pista
+    double proxPits;    //distancia que puede recorrer entre paradas
+    double vueltas;
+    int paradas;        //cantidad de veces en las que deberá parar
+    int i;
 
-  cout << "Inserta la cantidad total a recorrer." << '\n';
-  cin >> recorrido;
-  cout << '\n';
+    cout << "Inserta la cantidad de vueltas que se realizarán" << endl;
+    cin >> vueltas;
+    cout << "\n";
 
-  cout << "Cuál es la distancia que puede recorrer el camión sin parar?" << '\n';
-  cin >> dist;
-  cout << '\n';
+    cout << "Inserta el tamaño de la pista." << '\n';
+    cin >> pista;
+    cout << '\n';
 
-  cout << "Cuántas gasolineras hay?" << '\n';
-  cin >> paradas;
-  cout << '\n';
+    pista = pista * vueltas;
 
-  int gas[paradas];
+    cout << "Recorrido total: " << pista << " km.\n" << endl;
 
-  cout << "Inserta los km. donde se encuentran las gasolineras." << '\n';
+    cout << "Cuál es la distancia que puede recorrer el coche sin cambiar de llantas?" << '\n';
+    cin >> proxPits;
+    cout << '\n';
 
-  for (int i = 0; i < paradas; i++) {
-
-    cout << "Parada #" << i << '\n';
+    cout << "Cuántas paradas permitidas le quedan?" << '\n';
     cin >> paradas;
     cout << '\n';
 
-    gas[paradas];
-  }
+    int gas[paradas];
 
-  ParadaForzosa(recorrido, dist, paradas, gas);
+    cout << "Inserta los km. donde se encuentran las gasolineras." << '\n';
 
-  return 0;
+    for (i = 0; i < paradas; i++) {
+
+        cout << "Parada #" << i << '\n';
+        cin >> paradas;
+        cout << '\n';
+
+        gas[paradas];
+    }
+
+    auto start = high_resolution_clock::now();
+
+    cout << "Puede llegar a hacer " <<Pits(pista, proxPits, paradas, gas) << " paradas en los pits.\n" << endl;
+
+    auto stop = high_resolution_clock::now();
+
+    auto durationSeg = duration_cast<seconds>(stop - start);
+    auto durationMilli = duration_cast<milliseconds>(stop - start);
+    auto durationMicro = duration_cast<microseconds>(stop - start);
+
+    cout << "Le tomo " << durationSeg.count() << " segundos\n";
+    cout << "Le tomo " << durationMilli.count() << " milisegundos\n";
+    cout << "Le tomo " << durationMicro.count() << " microsegundos\n";
+
+return 0;
 }

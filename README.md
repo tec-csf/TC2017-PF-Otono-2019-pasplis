@@ -1,4 +1,4 @@
-# *[Poner aquí el Título del Proyecto]*
+# *Visitas a los pits*
 ---
 #### Materia: *Análisis y Diseño de Algoritmos (TC2017)*
 

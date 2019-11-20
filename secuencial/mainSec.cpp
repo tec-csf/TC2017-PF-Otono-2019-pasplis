@@ -1,7 +1,6 @@
 #include <iostream>
 #include <stdio.h>
 #include <chrono>
-#include <ctime>
 #include "pitsSec.hpp"
 
 using namespace std::chrono;
@@ -9,10 +8,11 @@ using namespace std;
 
 int main() {
 
-    double pista;       //distancia total de la pista
-    double proxPits;    //distancia que puede recorrer entre paradas
-    double vueltas;
-    int paradas;        //cantidad de veces en las que deberá parar
+    double pista;                       //distancia total de la pista
+    double vueltas;                     //cantidad de vueltas que se realizarán
+    double proxPits;                    //distancia que puede recorrer entre paradas
+    int paradas = 5;                    //cantidad de veces en las que deberá parar
+    int entradaPits[] = {3,6,9,12,15};  //distancia en la que se encuentran las próximas paradas
     int i;
 
     cout << "Inserta la cantidad de vueltas que se realizarán" << endl;
@@ -31,26 +31,13 @@ int main() {
     cin >> proxPits;
     cout << '\n';
 
-    cout << "Cuántas paradas permitidas le quedan?" << '\n';
-    cin >> paradas;
-    cout << '\n';
+    cout <<"Le quedan "<< paradas << " paradas permitidas.\n" << endl;
 
-    int gas[paradas];
-
-    cout << "Inserta los km. donde se encuentran las gasolineras." << '\n';
-
-    for (i = 0; i < paradas; i++) {
-
-        cout << "Parada #" << i << '\n';
-        cin >> paradas;
-        cout << '\n';
-
-        gas[paradas];
-    }
+    cout << "Los datos insertados son los siguientes: \n" << "Tamaño de la pista: " << pista << " km.\n" << "Vueltas que debe dar: " << vueltas << "\n" << "Distancia que le queda por llegar a los pits: "<< proxPits << " km.\n" << "Paradas por realizar: " << paradas << "\n" << endl;
 
     auto start = high_resolution_clock::now();
 
-    cout << "Puede llegar a hacer " <<Pits(pista, proxPits, paradas, gas) << " paradas en los pits.\n" << endl;
+    Pits(pista, proxPits, paradas, entradaPits);
 
     auto stop = high_resolution_clock::now();
 

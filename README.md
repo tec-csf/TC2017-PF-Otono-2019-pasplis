@@ -47,7 +47,8 @@ Como parte de la entrega final del proyecto, se debe incluir la siguiente inform
 
 ## 2. Descripción del problema
 
-*[Incluya aquí la descripción del problema a resolver.]*
+A lo largo de las carreras de *Fórmula 1* es muy fácil ponchar una llanta y, por consiguiente, perder tiempo para poder ganar puntos e inclusive perder una posición en el podio.</br>
+Este programa esta enfocado en decidir si vale la pena seguir en la carrera o sacar el vehículo de la competencia, así el piloto no llega a salir lesionado.
 
 ## 3. Solución secuencial
 

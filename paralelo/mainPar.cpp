@@ -1,12 +1,11 @@
-#include <iostream>
-#include <stdio.h>
-#include <chrono>
-#include <omp.h>
-#include "pitsPar.hpp"
-#include <iostream>
-#include <cmath>
 #include <cfenv>
+#include <chrono>
 #include <climits>
+#include <cmath>
+#include <iostream>
+#include <omp.h>
+#include <stdio.h>
+#include "pitsPar.hpp"
 
 #pragma STDC FENV_ACCESS ON
 

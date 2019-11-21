@@ -1,6 +1,7 @@
+#include <chrono>
+#include <cmath>
 #include <iostream>
 #include <stdio.h>
-#include <chrono>
 #include "pitsSec.hpp"
 
 using namespace std::chrono;
@@ -24,9 +25,15 @@ int main() {
     cin >> pista;
     cout << '\n';
 
+    double pistaDouble = pista;
+
     pistaOr = pista;
     pista = pista * vueltas;
-    (int)pistaOr;
+
+    (int)pistaOr; 
+    pistaOr = (std::round(pistaOr));
+
+    cout << "Recorrido de una vuelta " << pistaOr << endl;
 
     cout << "Recorrido total: " << pista << " km.\n" << endl;
 
@@ -37,6 +44,9 @@ int main() {
     cout << "Cuántas veces debería de parar el coche en los pits?" << endl;
     cin >> paradas;
     cout << "\n";
+
+
+    cout << "De preferencia pare a cambiar sus neumáticos.\n" << endl;
 
     int entradaPits[paradas];   //distancia a recorrer para la siguiente vuelta una vez que se ingresa a los pits
     int salidaPits[paradas];    //distancia a recorrer una vez que se sale de los pits para la siguiente vuelta
@@ -63,11 +73,11 @@ int main() {
     }
 
     cout << "Los datos insertados son los siguientes: \n"
-         << "Tamaño de la pista: " << pistaOr << " km.\n"
-         << "Vueltas que debe dar: " << vueltas << "\n"
-         << "El porcentaje de desgaste de las llantas es de: " << proxPits << "%.\n"
-         << "Paradas por realizar: " << paradas << "\n"
-         << endl;
+        << "Tamaño de la pista: " << pistaDouble << " km.\n"
+        << "Vueltas que debe dar: " << vueltas << "\n"
+        << "El porcentaje de desgaste de las llantas es de: " << proxPits << "%.\n"
+        << "Paradas por realizar: " << paradas << "\n"
+        << endl;
 
     auto start = high_resolution_clock::now();
 

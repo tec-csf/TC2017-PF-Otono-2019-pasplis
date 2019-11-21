@@ -8,6 +8,7 @@ long t_inicial = 0, t_final = 0;
 
 int Randomizador(int paradas, int entradaPits[], int pista)
 {
+    paradas = paradas * 10;
     srand(time(NULL));
     for (int i = 0; i < paradas; i++)
     {

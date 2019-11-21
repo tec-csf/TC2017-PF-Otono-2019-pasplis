@@ -3,11 +3,11 @@
 
 using namespace std;
 
-int Randomizador(int paradas, int entradaPits[], int pista){
+int Randomizador(int paradas, int entradaPits[], int pistaOr){
     srand(time(NULL));
     for (int i = 0; i < paradas; i++)
     {
-        entradaPits[i] = rand()%pista;
+        entradaPits[i] = rand()%pistaOr;
     }
     
 };
@@ -53,8 +53,6 @@ int Pits(double proxPits, double distancia, int paradas, int entradaPits[]){
         }
 
     }
-
-    //cout << "Puede llegar a hacer " << alfa << " paradas.\n" << endl;
 
     if (alfa < 10)
     {

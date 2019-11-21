@@ -30,11 +30,11 @@ int main() {
 
     cout << "Recorrido total: " << pista << " km.\n" << endl;
 
-    cout << "Del 1 al 100, 100 siendo como nuevas, cual es el desgaste de las llantas?" << '\n';
+    cout << "Del 1 al 100, cuál sería el porcentaje de desgaste?" << '\n';
     cin >> proxPits;
     cout << '\n';
 
-    cout << "Cuántas veces deberá parar el coche en los pits?" << endl;
+    cout << "Cuántas veces debería de parar el coche en los pits?" << endl;
     cin >> paradas;
     cout << "\n";
 
@@ -50,20 +50,22 @@ int main() {
 
     while (orden)
     {
-        cout << "Entra al while" << endl;
-
         Randomizador(paradas, entradaPits, pistaOr);
         OrdenParadas(entradaPits, paradas);
 
         if (entradaPits[0] <= proxPits)
         {
-            cout << "Entra al if" << endl;
             orden = false;
         }
         
     }
-    
-    cout << "Los datos insertados son los siguientes: \n" << "Tamaño de la pista: " << pistaOr << " km.\n" << "Vueltas que debe dar: " << vueltas << "\n" << "Distancia que le queda por llegar a los pits: "<< proxPits << " km.\n" << "Paradas por realizar: " << paradas << "\n" << endl;
+
+    cout << "Los datos insertados son los siguientes: \n"
+         << "Tamaño de la pista: " << pistaOr << " km.\n"
+         << "Vueltas que debe dar: " << vueltas << "\n"
+         << "El porcentaje de desgaste de las llantas es de: " << proxPits << "%.\n"
+         << "Paradas por realizar: " << paradas << "\n"
+         << endl;
 
     auto start = high_resolution_clock::now();
 

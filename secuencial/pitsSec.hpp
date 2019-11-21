@@ -58,12 +58,11 @@ int Pits(double proxPits, double distancia, int paradas, int entradaPits[]){
 
     if (alfa < 10)
     {
-        cout << "Puede pasar a los pits sin problema alguno.\n" << endl;
+        cout << "Puede pasar seguir con el set actual de llantas.\n" << endl;
     }else if (alfa > 11)
     {
-       cout << "Le recomendamos sacar su vehiculo de la competencia\n" << endl;
+       cout << "Le recomendamos cambiar las llantas.\n" << endl;
     }
-
 
     return alfa;
 };

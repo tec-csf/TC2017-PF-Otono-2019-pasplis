@@ -3,6 +3,35 @@
 
 using namespace std;
 
+int Randomizador(int paradas, int entradaPits[], int pista){
+    srand(time(NULL));
+    for (int i = 0; i < paradas; i++)
+    {
+        entradaPits[i] = rand()%pista;
+    }
+    
+}
+
+void AcomodaValores(int *var1, int *var2){
+    int temporal = *var1;
+    *var1 = *var2;
+    *var2 = temporal;
+}
+
+void OrdenParadas(int entradaPits[], int paradas){
+    
+    int initium, finis;
+
+    for (initium = 0; initium < paradas; initium++)
+   
+    for (finis = 0; finis < (paradas-1-initium); finis++)
+        if (entradaPits[finis] > entradaPits[finis-1])
+        {
+            AcomodaValores(&entradaPits[finis], &entradaPits[finis+1]);    
+        }
+        
+}
+
 int Pits(double proxPits, double distancia, int paradas, int entradaPits[]){
 
     double contDistancia = 0.0;   
@@ -25,7 +54,7 @@ int Pits(double proxPits, double distancia, int paradas, int entradaPits[]){
 
     }
 
-    cout << "Puede llegar a hacer " << alfa << " paradas.\n" << endl;
+    //cout << "Puede llegar a hacer " << alfa << " paradas.\n" << endl;
 
     if (alfa < 10)
     {

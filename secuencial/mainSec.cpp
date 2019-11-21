@@ -11,8 +11,9 @@ int main() {
     double pista;                       //distancia total de la pista
     double vueltas;                     //cantidad de vueltas que se realizarán
     double proxPits;                    //distancia que puede recorrer entre paradas
-    int paradas = 5;                    //cantidad de veces en las que deberá parar
-    int entradaPits[] = {3,6,9,12,15};  //distancia en la que se encuentran las próximas paradas
+    int paradas;                        //cantidad de veces en las que deberá parar
+    bool orden = true;
+    double pistaOr;
     int i;
 
     cout << "Inserta la cantidad de vueltas que se realizarán" << endl;
@@ -23,17 +24,46 @@ int main() {
     cin >> pista;
     cout << '\n';
 
+    pistaOr = pista;
     pista = pista * vueltas;
+    (int)pistaOr;
 
     cout << "Recorrido total: " << pista << " km.\n" << endl;
 
-    cout << "Cuál es la distancia que puede recorrer el coche sin cambiar de llantas?" << '\n';
+    cout << "Del 1 al 100, 100 siendo como nuevas, cual es el desgaste de las llantas?" << '\n';
     cin >> proxPits;
     cout << '\n';
 
-    cout <<"Le quedan "<< paradas << " paradas permitidas.\n" << endl;
+    cout << "Cuántas veces deberá parar el coche en los pits?" << endl;
+    cin >> paradas;
+    cout << "\n";
 
-    cout << "Los datos insertados son los siguientes: \n" << "Tamaño de la pista: " << pista << " km.\n" << "Vueltas que debe dar: " << vueltas << "\n" << "Distancia que le queda por llegar a los pits: "<< proxPits << " km.\n" << "Paradas por realizar: " << paradas << "\n" << endl;
+    int entradaPits[paradas];   //distancia a recorrer para la siguiente vuelta una vez que se ingresa a los pits
+    int salidaPits[paradas];    //distancia a recorrer una vez que se sale de los pits para la siguiente vuelta
+
+    for (i = 0; i < pistaOr; i++)
+    {
+        //cout << "Entrada #" << i << " al for." << endl;
+        salidaPits[i] = 0;
+    }
+    
+
+    while (orden)
+    {
+        cout << "Entra al while" << endl;
+
+        Randomizador(paradas, entradaPits, pistaOr);
+        OrdenParadas(entradaPits, paradas);
+
+        if (entradaPits[0] <= proxPits)
+        {
+            cout << "Entra al if" << endl;
+            orden = false;
+        }
+        
+    }
+    
+    cout << "Los datos insertados son los siguientes: \n" << "Tamaño de la pista: " << pistaOr << " km.\n" << "Vueltas que debe dar: " << vueltas << "\n" << "Distancia que le queda por llegar a los pits: "<< proxPits << " km.\n" << "Paradas por realizar: " << paradas << "\n" << endl;
 
     auto start = high_resolution_clock::now();
 

@@ -11,6 +11,7 @@ int Randomizador(int paradas, int entradaPits[], int pistaOr)
     #pragma omp for
     for (int i = 0; i < paradas; i++)
     {
+        cout << i << "\n" << endl;
         entradaPits[i] = rand() % pistaOr;
     }
 };
@@ -45,17 +46,16 @@ int Pits(double proxPits, double distancia, int paradas, int entradaPits[])
 
     while (contDistancia < proxPits)
     {
+        #pragma omp paradas if
         if (alfa < paradas && entradaPits[beta] <= (contDistancia + distancia))
         {
             contDistancia = entradaPits[beta];
             beta++;
-        } //fin loop if en la que se suma la distancia recorrida
+        } 
         else
         {
             contDistancia += distancia;
         }
-
-        #pragma omp parallel
         if (contDistancia < proxPits)
         {
             alfa++;
@@ -72,7 +72,7 @@ int Pits(double proxPits, double distancia, int paradas, int entradaPits[])
              << endl;
     }
     else
-    #pragma omp parallel if (alfa < 10)
+    #pragma omp parallel if (alfa >= 10)
     if (alfa >= 10)
     {
         cout << "Las vueltas a recorrer son " << alfa << "." <<endl;

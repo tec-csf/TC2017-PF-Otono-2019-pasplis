@@ -4,19 +4,51 @@
 
 using namespace std;
 
-int Pits(double recorrido, double distancia, double pits, int gas[])
+long t_inicial = 0, t_final = 0;
+
+int Randomizador(int paradas, int entradaPits[], int pista)
+{
+    srand(time(NULL));
+    for (int i = 0; i < paradas; i++)
+    {
+        entradaPits[i] = rand() % pista;
+    }
+}
+
+void AcomodaValores(int *var1, int *var2)
+{
+    int temporal = *var1;
+    *var1 = *var2;
+    *var2 = temporal;
+}
+
+void OrdenParadas(int entradaPits[], int paradas)
 {
 
-    double contDistancia = 0.0; //Contador de distancia
-    int alfa = 0.0;          //contador A
-    int beta = 0.0;          //contador B
+    int initium, finis;
 
-    while (contDistancia < recorrido)
+    for (initium = 0; initium < paradas; initium++)
+
+        for (finis = 0; finis < (paradas - 1 - initium); finis++)
+            if (entradaPits[finis] > entradaPits[finis - 1])
+            {
+                AcomodaValores(&entradaPits[finis], &entradaPits[finis + 1]);
+            }
+}
+
+int Pits(double proxPits, double distancia, int paradas, int entradaPits[])
+{
+
+    double contDistancia = 0.0;
+    double alfa = 0.0;
+    int beta = 0;
+
+    while (contDistancia < proxPits)
     {
 
-        if (alfa < pits && gas[beta] <= (contDistancia + distancia))
+        if (alfa < paradas && entradaPits[beta] <= (contDistancia + distancia))
         {
-            contDistancia = gas[beta];
+            contDistancia = entradaPits[beta];
             beta++;
         } //fin loop if en la que se suma la distancia recorrida
         else
@@ -24,14 +56,24 @@ int Pits(double recorrido, double distancia, double pits, int gas[])
             contDistancia += distancia;
         }
 
-        if (contDistancia < recorrido)
+        if (contDistancia < proxPits)
         {
-            contDistancia++;
+            alfa++;
         }
+    }
 
-    } //fin while
+    //cout << "Puede llegar a hacer " << alfa << " paradas.\n" << endl;
 
-    cout << "Deberá detenerse " << contDistancia << " veces" << endl;
+    if (alfa < 10)
+    {
+        cout << "Puede pasar a los pits sin problema alguno.\n"
+             << endl;
+    }
+    else if (alfa > 11)
+    {
+        cout << "Le recomendamos sacar su vehiculo de la competencia\n"
+             << endl;
+    }
 
-    return 0;
+    return alfa;
 };

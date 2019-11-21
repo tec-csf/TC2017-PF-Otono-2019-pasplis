@@ -1,53 +1,105 @@
 #include <iostream>
 #include <stdio.h>
+#include <chrono>
 #include <omp.h>
 #include "pitsPar.hpp"
+#include <iostream>
+#include <cmath>
+#include <cfenv>
+#include <climits>
 
+#pragma STDC FENV_ACCESS ON
+
+using namespace std::chrono;
 using namespace std;
 
-int main() {
+int main()
+{
 
-    double recorrido;    //distancia total de la pista
-    double dist;        //distancia que puede recorrer entre paradas de pits
-    int pits;           //cantidad de veces que puede parar en pits
+    double pista;    //distancia total de la pista
+    double vueltas;  //cantidad de vueltas que se realizarán
+    double proxPits; //distancia que puede recorrer entre paradas
+    int paradas;     //cantidad de veces en las que deberá parar
+    bool orden = true;
+    int pistaOr;
     int i;
-    double t_inicial = 0, t_final = 0;
+    long t_inicial = 0, t_final = 0;
 
-    cout << "Inserta la distancia de la pista a recorrer." << '\n';
-    cin >> recorrido;
+
+    (double)pistaOr;
+
+    cout << "Inserta la cantidad de vueltas que se realizarán" << endl;
+    cin >> vueltas;
+    cout << "\n";
+
+    cout << "Inserta el tamaño de la pista." << '\n';
+    cin >> pista;
     cout << '\n';
 
-    recorrido = recorrido * 305.0;
+    pistaOr = pista;
+    pista = pista * vueltas;
 
-    cout << "La distancia total a recorrer circuito es: " << recorrido << " km." << endl;
+    (int)pistaOr;
 
-    cout << "Cuál es la distancia que puede recorrer el coche sin tener que cambiar llantas?" << '\n';
-    cin >> dist;
+    pistaOr = std::round(pistaOr);
+
+    cout << "Recorrido total: " << pista << " km.\n"
+         << endl;
+
+    cout << "Del 1 al 100, 100 siendo como nuevas, cual es el desgaste de las llantas?" << '\n';
+    cin >> proxPits;
     cout << '\n';
 
-    cout << "Cuántas paradas se pueden hacer?" << '\n';
-    cin >> pits;
-    cout << '\n';
+    cout << "Cuántas veces deberá parar el coche en los pits?" << endl;
+    cin >> paradas;
+    cout << "\n";
 
-    int gas[pits];
+    int entradaPits[paradas]; //distancia a recorrer para la siguiente vuelta una vez que se ingresa a los pits
+    int salidaPits[paradas];  //distancia a recorrer una vez que se sale de los pits para la siguiente vuelta
 
-    cout << "Inserta los km. donde se encuentran las gasolineras." << '\n';
-
-    t_inicial = omp_get_wtime();
     #pragma omp parallel for private(i)
-    for (i = 0; i < pits; i++) {
-
-        cout << "Parada #" << i << '\n';
-        cin >> pits;
-        cout << '\n';
-
-        gas[pits];
+    for (i = 0; i < pistaOr; i++)
+    {
+        salidaPits[i] = 0;
     }
-    t_final = omp_get_wtime();
 
-    cout << "Se tomó: " << t_final - t_inicial << " segundos." << endl;
+    #pragma omp critical
+    while (orden)
+    {
+        cout << "Entra al while" << endl;
 
-    Pits(recorrido, dist, pits, gas);
+        Randomizador(paradas, entradaPits, pistaOr);
+        OrdenParadas(entradaPits, paradas);
+
+        if (entradaPits[0] <= proxPits)
+        {
+            cout << "Entra al if" << endl;
+            orden = false;
+        }
+    }
+
+    cout << "Los datos insertados son los siguientes: \n"
+         << "Tamaño de la pista: " << pistaOr << " km.\n"
+         << "Vueltas que debe dar: " << vueltas << "\n"
+         << "Distancia que le queda por llegar a los pits: " << proxPits << " km.\n"
+         << "Paradas por realizar: " << paradas << "\n"
+         << endl;
+
+    auto start = high_resolution_clock::now();
+
+
+    #pragma omp critical
+    Pits(pista, proxPits, paradas, entradaPits);
+
+    auto stop = high_resolution_clock::now();
+
+    auto durationSeg = duration_cast<seconds>(stop - start);
+    auto durationMilli = duration_cast<milliseconds>(stop - start);
+    auto durationMicro = duration_cast<microseconds>(stop - start);
+
+    cout << "Le tomo " << durationSeg.count() << " segundos\n";
+    cout << "Le tomo " << durationMilli.count() << " milisegundos\n";
+    cout << "Le tomo " << durationMicro.count() << " microsegundos\n";
 
     return 0;
 }

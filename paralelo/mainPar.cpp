@@ -20,12 +20,8 @@ int main()
     double proxPits; //distancia que puede recorrer entre paradas
     int paradas;     //cantidad de veces en las que deberá parar
     bool orden = true;
-    int pistaOr;
+    double pistaOr;
     int i;
-    long t_inicial = 0, t_final = 0;
-
-
-    (double)pistaOr;
 
     cout << "Inserta la cantidad de vueltas que se realizarán" << endl;
     cin >> vueltas;
@@ -35,17 +31,20 @@ int main()
     cin >> pista;
     cout << '\n';
 
+    double pistaDouble = pista;
+
     pistaOr = pista;
     pista = pista * vueltas;
 
     (int)pistaOr;
+    pistaOr = (std::round(pistaOr));
 
-    pistaOr = std::round(pistaOr);
+    cout << "Recorrido de una vuelta " << pistaOr << endl;
 
     cout << "Recorrido total: " << pista << " km.\n"
          << endl;
 
-    cout << "Del 1 al 100, 100 siendo como nuevas, cual es el desgaste de las llantas?" << '\n';
+    cout << "Del 1 al 100, cuál sería el porcentaje de desgaste?" << '\n';
     cin >> proxPits;
     cout << '\n';
 
@@ -56,23 +55,20 @@ int main()
     int entradaPits[paradas]; //distancia a recorrer para la siguiente vuelta una vez que se ingresa a los pits
     int salidaPits[paradas];  //distancia a recorrer una vez que se sale de los pits para la siguiente vuelta
 
-    #pragma omp parallel for private(i)
+    #pragma omp parallel
     for (i = 0; i < pistaOr; i++)
     {
+        //cout << "Entrada #" << i << " al for." << endl;
         salidaPits[i] = 0;
     }
 
-    #pragma omp critical
     while (orden)
     {
-        cout << "Entra al while" << endl;
-
         Randomizador(paradas, entradaPits, pistaOr);
         OrdenParadas(entradaPits, paradas);
 
         if (entradaPits[0] <= proxPits)
         {
-            cout << "Entra al if" << endl;
             orden = false;
         }
     }
@@ -87,7 +83,7 @@ int main()
     auto start = high_resolution_clock::now();
 
 
-    #pragma omp critical
+    //#pragma omp critical
     Pits(pista, proxPits, paradas, entradaPits);
 
     auto stop = high_resolution_clock::now();

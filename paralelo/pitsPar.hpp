@@ -4,30 +4,29 @@
 
 using namespace std;
 
-long t_inicial = 0, t_final = 0;
-
-int Randomizador(int paradas, int entradaPits[], int pista)
+int Randomizador(int paradas, int entradaPits[], int pistaOr)
 {
-    paradas = paradas * 10;
     srand(time(NULL));
+
+    #pragma omp for
     for (int i = 0; i < paradas; i++)
     {
-        entradaPits[i] = rand() % pista;
+        entradaPits[i] = rand() % pistaOr;
     }
-}
+};
 
 void AcomodaValores(int *var1, int *var2)
 {
     int temporal = *var1;
     *var1 = *var2;
     *var2 = temporal;
-}
+};
 
 void OrdenParadas(int entradaPits[], int paradas)
 {
 
     int initium, finis;
-
+    #pragma omp for
     for (initium = 0; initium < paradas; initium++)
 
         for (finis = 0; finis < (paradas - 1 - initium); finis++)
@@ -35,7 +34,7 @@ void OrdenParadas(int entradaPits[], int paradas)
             {
                 AcomodaValores(&entradaPits[finis], &entradaPits[finis + 1]);
             }
-}
+};
 
 int Pits(double proxPits, double distancia, int paradas, int entradaPits[])
 {
@@ -46,7 +45,6 @@ int Pits(double proxPits, double distancia, int paradas, int entradaPits[])
 
     while (contDistancia < proxPits)
     {
-
         if (alfa < paradas && entradaPits[beta] <= (contDistancia + distancia))
         {
             contDistancia = entradaPits[beta];
@@ -57,22 +55,28 @@ int Pits(double proxPits, double distancia, int paradas, int entradaPits[])
             contDistancia += distancia;
         }
 
+        #pragma omp parallel
         if (contDistancia < proxPits)
         {
             alfa++;
         }
     }
 
-    //cout << "Puede llegar a hacer " << alfa << " paradas.\n" << endl;
-
+    #pragma omp parallel if(alfa < 10)
     if (alfa < 10)
     {
+        cout << "Las vueltas a recorrer son " << alfa << "."
+             << endl;
+
         cout << "Puede pasar a los pits sin problema alguno.\n"
              << endl;
     }
-    else if (alfa > 11)
+    else
+    #pragma omp parallel if (alfa < 10)
+    if (alfa >= 10)
     {
-        cout << "Le recomendamos sacar su vehiculo de la competencia\n"
+        cout << "Las vueltas a recorrer son " << alfa << "." <<endl;
+        cout << "Le recomendamos cambiar las llantas INMEDIATAMENTE.\n"
              << endl;
     }
 

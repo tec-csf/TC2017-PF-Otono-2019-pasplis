@@ -48,9 +48,11 @@ int main() {
     }
     
 
+    (int)vueltas;
+
     while (orden)
     {
-        Randomizador(paradas, entradaPits, pistaOr);
+        Randomizador(vueltas, entradaPits, pistaOr);
         OrdenParadas(entradaPits, paradas);
 
         if (entradaPits[0] <= proxPits)

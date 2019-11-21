@@ -10,13 +10,13 @@ int Randomizador(int paradas, int entradaPits[], int pista){
         entradaPits[i] = rand()%pista;
     }
     
-}
+};
 
 void AcomodaValores(int *var1, int *var2){
     int temporal = *var1;
     *var1 = *var2;
     *var2 = temporal;
-}
+};
 
 void OrdenParadas(int entradaPits[], int paradas){
     
@@ -30,7 +30,7 @@ void OrdenParadas(int entradaPits[], int paradas){
             AcomodaValores(&entradaPits[finis], &entradaPits[finis+1]);    
         }
         
-}
+};
 
 int Pits(double proxPits, double distancia, int paradas, int entradaPits[]){
 
@@ -58,10 +58,13 @@ int Pits(double proxPits, double distancia, int paradas, int entradaPits[]){
 
     if (alfa < 10)
     {
-        cout << "Puede pasar seguir con el set actual de llantas.\n" << endl;
-    }else if (alfa > 11)
+        cout << "Puede pasar a los pits sin problema alguno.\n"
+             << endl;
+    }
+    else if (alfa > 11)
     {
-       cout << "Le recomendamos cambiar las llantas.\n" << endl;
+        cout << "Le recomendamos sacar su vehiculo de la competencia\n"
+             << endl;
     }
 
     return alfa;

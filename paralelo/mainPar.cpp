@@ -50,7 +50,7 @@ int main()
     cin >> proxPits;
     cout << '\n';
 
-    cout << "Cuántas veces deberá parar el coche en los pits?" << endl;
+    cout << "Cuántas veces debería de parar el coche en los pits?" << endl;
     cin >> paradas;
     cout << "\n";
 
@@ -81,7 +81,7 @@ int main()
     cout << "Los datos insertados son los siguientes: \n"
          << "Tamaño de la pista: " << pistaOr << " km.\n"
          << "Vueltas que debe dar: " << vueltas << "\n"
-         << "Distancia que le queda por llegar a los pits: " << proxPits << " km.\n"
+         << "El porcentaje de desgaste de las llantas insertado es de: " << proxPits << "%.\n"
          << "Paradas por realizar: " << paradas << "\n"
          << endl;
 

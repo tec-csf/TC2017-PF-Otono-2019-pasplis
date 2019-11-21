@@ -55,7 +55,7 @@ Para añadir un nivel mayor de "realismo" estamos obteniendo las distancias en l
 
 ## 3. Solución secuencial
 
-Para la solución secuencial de este problema, nos enfocamos en analizar un coche a la vez, mas que nada por la falta de recursos que se tiene en la programación secuencial. Al intentar resolver este problema, de la manera propuesta, podemos llegar a ver como habíamos planteado el problema e incluso podemos decir si vale la pena hacer *n* número de paradas, ocasionando que el piloto analice la situación y deduzca si vale la pena seguir en la carrera con el mismo _set_ de llantas o cambiarlo por uno nuevo. 
+Para la solución secuencial de este problema, nos enfocamos en analizar un coche a la vez, mas que nada por la falta de recursos que se tiene en la programación secuencial. Al intentar resolver este problema, de la manera propuesta, podemos llegar a ver como habíamos planteado el problema e incluso podemos decir si vale la pena hacer *n* número de paradas, ocasionando que el piloto analice la situación y deduzca si vale la pena seguir en la carrera con el mismo _set_ de llantas o cambiarlo por uno nuevo.</br> 
 
 ## 4. Análisis de los inhibidores del paralelismo
 

@@ -63,8 +63,8 @@ int main()
 
     while (orden)
     {
-        Randomizador(paradas, entradaPits, pistaOr);
-        OrdenParadas(entradaPits, paradas);
+        PosiblesAccidentes(paradas, entradaPits, pistaOr);
+        PosiblesParadas(entradaPits, paradas);
 
         if (entradaPits[0] <= proxPits)
         {

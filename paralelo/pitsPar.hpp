@@ -4,15 +4,19 @@
 
 using namespace std;
 
-int Randomizador(int paradas, int entradaPits[], int pistaOr)
+int PosiblesAccidentes(int paradas, int entradaPits[], int pistaOr)
 {
     srand(time(NULL));
 
-    #pragma omp for
+    int pistaRan = pistaOr*10;
+
+    //cout << "pistaRan " << pistaRan << endl;
+
     for (int i = 0; i < paradas; i++)
     {
-        cout << i << "\n" << endl;
-        entradaPits[i] = rand() % pistaOr;
+        entradaPits[i] = rand() % pistaRan;
+
+        //cout << entradaPits[i] << endl;
     }
 };
 
@@ -23,11 +27,11 @@ void AcomodaValores(int *var1, int *var2)
     *var2 = temporal;
 };
 
-void OrdenParadas(int entradaPits[], int paradas)
+void PosiblesParadas(int entradaPits[], int paradas)
 {
 
     int initium, finis;
-    #pragma omp for
+
     for (initium = 0; initium < paradas; initium++)
 
         for (finis = 0; finis < (paradas - 1 - initium); finis++)
@@ -37,48 +41,52 @@ void OrdenParadas(int entradaPits[], int paradas)
             }
 };
 
-int Pits(double proxPits, double distancia, int paradas, int entradaPits[])
+int Pits(double distancia, double proxPits, int paradas, int entradaPits[])
 {
 
     double contDistancia = 0.0;
     double alfa = 0.0;
     int beta = 0;
 
-    while (contDistancia < proxPits)
+    #pragma omp parallel
     {
-        #pragma omp paradas if
-        if (alfa < paradas && entradaPits[beta] <= (contDistancia + distancia))
+        while (contDistancia < proxPits)
         {
-            contDistancia = entradaPits[beta];
-            beta++;
-        } 
-        else
-        {
-            contDistancia += distancia;
-        }
-        if (contDistancia < proxPits)
-        {
-            alfa++;
+            #pragma omp paradas if
+            if (alfa < paradas && entradaPits[beta] <= (contDistancia + distancia))
+            {
+                contDistancia = entradaPits[beta];
+                beta++;
+            } 
+            else
+            {
+                contDistancia += distancia;
+            }
+            if (contDistancia < proxPits)
+            {
+                alfa++;
+            }
         }
     }
 
-    #pragma omp parallel if(alfa < 10)
+    //cout << "Alfa es " << alfa << "\n" << endl;
+
+    #pragma omp parallel
+    (int)alfa;
+
     if (alfa < 10)
     {
-        cout << "Las vueltas a recorrer son " << alfa << "."
-             << endl;
+        cout << "Las vueltas a recorrer son " << alfa;
 
-        cout << "Puede pasar a los pits sin problema alguno.\n"
+        cout << ", por lo tanto, si puede pasar a los pits sin problema alguno.\n"
              << endl;
-    }
-    else
-    #pragma omp parallel if (alfa >= 10)
-    if (alfa >= 10)
-    {
-        cout << "Las vueltas a recorrer son " << alfa << "." <<endl;
-        cout << "Le recomendamos cambiar las llantas INMEDIATAMENTE.\n"
-             << endl;
-    }
+        }
+        else if (alfa >= 10)
+        {
+            cout << "Las vueltas a recorrer son " << alfa;
+            cout << "por lo tanto le recomendamos cambiar las llantas INMEDIATAMENTE.\n"
+                << endl;
+        }
 
     return alfa;
 };

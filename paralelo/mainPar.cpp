@@ -7,14 +7,11 @@
 #include <stdio.h>
 #include "pitsPar.hpp"
 
-#pragma STDC FENV_ACCESS ON
-
 using namespace std::chrono;
 using namespace std;
 
-int main()
+int main(int argc, char const *argv[])
 {
-
     double pista;    //distancia total de la pista
     double vueltas;  //cantidad de vueltas que se realizarán
     double proxPits; //distancia que puede recorrer entre paradas
@@ -55,7 +52,8 @@ int main()
     int entradaPits[paradas]; //distancia a recorrer para la siguiente vuelta una vez que se ingresa a los pits
     int salidaPits[paradas];  //distancia a recorrer una vez que se sale de los pits para la siguiente vuelta
 
-    #pragma omp parallel
+    omp_set_num_threads(paradas);
+
     for (i = 0; i < pistaOr; i++)
     {
         //cout << "Entrada #" << i << " al for." << endl;
@@ -64,8 +62,8 @@ int main()
 
     while (orden)
     {
-        Randomizador(paradas, entradaPits, pistaOr);
-        OrdenParadas(entradaPits, paradas);
+        PosiblesAccidentes(paradas, entradaPits, pistaOr);
+        PosiblesParadas(entradaPits, paradas);
 
         if (entradaPits[0] <= proxPits)
         {

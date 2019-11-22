@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int Randomizador(int paradas, int entradaPits[], int pistaOr){
+int PosiblesAccidentes(int paradas, int entradaPits[], int pistaOr){
     srand(time(NULL));
     for (int i = 0; i < paradas; i++)
     {
@@ -18,7 +18,7 @@ void AcomodaValores(int *var1, int *var2){
     *var2 = temporal;
 };
 
-void OrdenParadas(int entradaPits[], int paradas){
+void PosiblesParadas(int entradaPits[], int paradas){
     
     int initium, finis;
 

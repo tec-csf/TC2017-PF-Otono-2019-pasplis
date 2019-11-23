@@ -32,6 +32,7 @@ void PosiblesParadas(int entradaPits[], int paradas)
 
     int initium, finis;
 
+    #pragma omp parallel for
     for (initium = 0; initium < paradas; initium++)
 
         for (finis = 0; finis < (paradas - 1 - initium); finis++)
@@ -69,7 +70,7 @@ int Pits(double distancia, double proxPits, int paradas, int entradaPits[])
         }
     }
 
-    //cout << "Alfa es " << alfa << "\n" << endl;
+    cout << "Alfa es " << alfa << "\n" << endl;
 
     #pragma omp parallel
     (int)alfa;

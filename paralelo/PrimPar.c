@@ -64,11 +64,11 @@ int main()
     for (k = 0; k < prim.dim - 1; k++)
     {
         minDist = 1000;
-        //for every node in minimum spanning tree
+
         for (i = 0; i < prim.counts; i++)
         {
-            //declaring OpenMP's derective with the appropriate scheduling...
-#pragma omp parallel for
+
+#pragma omp parallel for schedule(dynamic)
             for (j = 0; j < prim.dim; j++)
             {
                 //find the minimum weight

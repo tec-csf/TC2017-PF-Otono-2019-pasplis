@@ -1,4 +1,4 @@
-# *Visitas a los pits*
+# *Las paradas de un camión*
 ---
 #### Materia: *Análisis y Diseño de Algoritmos (TC2017)*
 

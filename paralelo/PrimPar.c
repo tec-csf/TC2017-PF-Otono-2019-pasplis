@@ -51,13 +51,19 @@ int main()
     printf("A continuación, inserte la cantidad de paradas de su ruta:\n");
     scanf("%d", &prim.dim);
 
+    int num = prim.dim;
+
+    srand(time(NULL));
+
     printf("Inseta el peso del tráfico: \n");
 
     for (i = 0; i < prim.dim; ++i)
     {
         for (j = 0; j < prim.dim; j++)
         {
-            scanf("%d", &(prim.edge[i][j]));
+            // scanf("%d", &(prim.edge[i][j]));
+            prim.edge[i][j] = rand() % num;
+
             printf("Cost: %d ",prim.edge[i][j]);
             printf("From %d To %d\n",i,j);
         }
@@ -77,7 +83,7 @@ int main()
         for (i = 0; i < prim.counts; i++)
         {
 
-#pragma omp parallel for schedule(dynamic)
+#pragma omp parallel for schedule(static)
             for (j = 0; j < prim.dim; j++)
             {
                 //find the minimum weight

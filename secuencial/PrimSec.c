@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <omp.h>
 #include <time.h>
 
 #define infinity 9999
@@ -14,6 +15,9 @@ int main()
     clock_t t;
 
     int i, j, total_cost;
+
+    srand(time(NULL));  
+
     printf("Cuántas paradas va a hacer?\n");
     scanf("%d", &n);
 
@@ -21,9 +25,11 @@ int main()
 
     for (i = 0; i < n; i++)
         for (j = 0; j < n; j++)
-            scanf("%d", &G[i][j]);
+            G[i][j] = rand()%n;
+            // scanf("%d", &G[i][j]);
 
-    t = clock();
+    double start = omp_get_wtime();
+
     total_cost = prims();
     printf("\nLas paradas a hacer son:\n");
 
@@ -34,11 +40,11 @@ int main()
             printf("%d --> %d\n", i+1, j+1);
             //printf("%d\t", spanning[i][j]);
     }
-    t = clock() - t;
+    double finito = omp_get_wtime() - start;
 
-    double time_taken = ((double)t) / CLOCKS_PER_SEC; // in seconds
+    float time_taken = ((float)t) / CLOCKS_PER_SEC; // in seconds
 
-    printf("El tiempo de ejecución es de: %f segundos\n", time_taken);
+    printf("Le tomó %.5g segundos en averiguar una solución.\n", finito);
 
     printf("\n\nDistancia minima entre paradas = %d\n", total_cost);
     return 0;

@@ -51,7 +51,7 @@ La *Ciudad de México* es uno de los estados de la republica que sufre de la may
 
 Con este programa estamos enfocados en utilizar un progrmama que le permita  alos usuarios encontrar el mejor camino que puede haber para llegar a todos los lugares de la forma mas eficientes.</br>
 
-Esperamos que este programa pueda ser usados para los tranportes publicos los cuales son los mas usuales en Mexico, ka forma en lo que lo hicimos es usando diagramas de grafos de "Prim" el peso siendo el nivel de trafico de la calle que usaremos, de este forma se puede calcuar la mejor ruta para llegar a todas las paradas.
+Esperamos que este programa pueda ser usados para los tranportes publicos los cuales son los mas usuales en Mexico, ka forma en lo que lo hicimos es usando diagramas de grafos de *Prim* el peso siendo el nivel de trafico de la calle que usaremos, de este forma se puede calcuar la mejor ruta para llegar a todas las paradas.
 
 ## 3. Solución secuencial
 
@@ -67,19 +67,41 @@ Para la solución secuencial de este problema, nos enfocamos en analizar un coch
 
 ## 6. Tabla de resultados
 
-*[Incluya aquí la tabla con los resultados de las mediciones.]*
+La tabla de resultados puede ser encontrada en [este](https://github.com/tec-csf/TC2017-PF-Otono-2019-pasplis/blob/master/docs/Resultados.xlsx) Excel, se separaron en cuatro tablas, cada una con el diferente tipo de balanceo que se solicitó, lo demás son los datos que se usaron para poder correrlo.
 
 ## 7. Gráfica(s) comparativa(s)
 
-*[Incluya aquí la(s) gráfica(s) comparativa(s).]*
+Para las gráficas comparativas, las colocamos en el folder llamado _docs_, puede ser encontrado [aquí](https://github.com/tec-csf/TC2017-PF-Otono-2019-pasplis/tree/master/docs).</br>
 
 ## 8. Interpretación de los resultados
 
-*[Incluya aquí la interpretación de los resultados.]*
+Este proyecto nos enseñó unos resultados que no parecen tener mucho sentido al verlos sin entender lo que está pasando en el fondo, como los algoritmos paralelos, tienen que pasar *n* número de veces para poder obtener un resultado concreto, este va a demorar unos milisegundos mas, por esto mismo.</br>
+
+Al correr el código secuencial, se está pasando una sola vez por el mismo proceso y es por esto mismo que es un código mas rápido en el sentido que su tiempo de ejecución, en algunos casos, es menor al del programa paralelo.
 
 ## 9. Guía paso a paso
 
-*[Incluya aquí la guía para la ejecución de los códigos.]*
+Para poder ejecutar el código en paralelo es necesario estar en la carpeta correcta, esta siendo *paralelo* y posteriormente correr el siguiente comando en su terminal:</br>
+
+gcc -fopenmp PrimPar.c</br>
+
+Al correrlo se debería ver un documento llamado *a.out*, para poder correrlo se escribe, en la misma carpeta el siguiente comando:</br>
+
+*./a.out* </br>
+
+Al hacerlo, le va a pedir al usuario que inserte el número de paradas que deberá hacer el camión, por lo tanto el usuario deberá insertar un número positivo y este mismo conllevará a que se inicializen los pesos de este algoritmo en aleatorio.</br>
+
+Para poder ejecutarlo en secuencial se deberá cambiar de carpeta, esta tiene el nombre de *secuencial* y allí se compilará con este comando en su terminal:</br>
+
+gcc -fopenmp PrimSec.c</br>
+
+Aunque este no sea en paralelo, se tuvieron dificultades al intentar medir el tiempo de este mismo, por lo tanto se usó una función de la librería de OpenMP para que la medición de su tiempo fuese igual.</br>
+
+Ahora, para poder correr el código, es necesario escribir el siguiente comando en su terminal:</br>
+
+*./a.out*</br>
+
+Este igual le pedirá un número para que se puedan inicializar la cantidad de veces que se debería de detener el camión y, posteriormente, se inicializarán los pesos con números aleatorios, estos dependiendo de que valor se haya ingresado anteriormente.</br>
 
 ## 10. Referencias
 

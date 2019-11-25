@@ -47,11 +47,11 @@ Como parte de la entrega final del proyecto, se debe incluir la siguiente inform
 
 ## 2. Descripción del problema
 
-A lo largo de las carreras de *Fórmula 1* es muy fácil ponchar una llanta y, por consiguiente, perder tiempo para poder ganar puntos e inclusive perder una posición en el podio.</br>
+La *Ciudad de México* es uno de los estados de la republica que sufre de la mayor cantidad de trafico en la Republica Mexicana devido a la cantidad de carros en ella, esto es un problema ya que los ciudadanos quieren llegar  asus destinos de la manera mas rapida posible, y no confian en el transporte publico y las rutas que llevan.</br>
 
-Este programa esta enfocado en decidir si vale la pena seguir en la carrera o sacar el vehículo de la competencia, así el piloto no llega a salir lesionado.</br>
+Con este programa estamos enfocados en utilizar un progrmama que le permita  alos usuarios encontrar el mejor camino que puede haber para llegar a todos los lugares de la forma mas eficientes.</br>
 
-Para añadir un nivel mayor de "realismo" estamos obteniendo las distancias en las que un piloto tendrá que cambiar sus llantas, siguiendo este mismo punto, es importante recalcar que en la *Fórmula 1* se prohibió la recarga de combustible al momento de parar en los pits, por eso se está enfocando en el cambio de neumáticos.
+Esperamos que este programa pueda ser usados para los tranportes publicos los cuales son los mas usuales en Mexico, ka forma en lo que lo hicimos es usando diagramas de grafos de "Prim" el peso siendo el nivel de trafico de la calle que usaremos, de este forma se puede calcuar la mejor ruta para llegar a todas las paradas.
 
 ## 3. Solución secuencial
 

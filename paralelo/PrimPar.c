@@ -1,3 +1,12 @@
+/*
+ *
+ * Proyecto final
+ * 
+ * Daniel Roa       -   A01021960
+ * Christian Dalma  -   A01423166  
+ * 
+ */ 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>

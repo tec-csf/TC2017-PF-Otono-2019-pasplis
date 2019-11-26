@@ -55,7 +55,9 @@ Esperamos que este programa pueda ser usados para los tranportes publicos los cu
 
 ## 3. Solución secuencial
 
-Para la solución secuencial de este problema, nos enfocamos en analizar un coche a la vez, mas que nada por la falta de recursos que se tiene en la programación secuencial. Al intentar resolver este problema, de la manera propuesta, podemos llegar a ver como habíamos planteado el problema e incluso podemos decir si vale la pena hacer *n* número de paradas, ocasionando que el piloto analice la situación y deduzca si vale la pena seguir en la carrera con el mismo _set_ de llantas o cambiarlo por uno nuevo.</br> 
+Para la solucion Secuencial nos enfocamos en que el usuario nos pudiese proporcionar la cantidad de ubicaciones que quiere que haya despues de eso decidimos que para este algoritmo el peso seria aleatorio como lo seria el trafico normlamente, decidimos tomar primero los datos para depues de esp hacer la secuencia de un grafo Prim donde tomariamos los datos ya puestos y buscariamos el mejor camino, despues de entrar al metodo prim el progrmama imprimira la mejor solucion.</br> 
+
+Utilizamos el metodo de Grafos Prim ya que pensamos que seria el mas apropiado para esta situacion, Este algoritmo es avido con complejidad de O(V^2
 
 ## 4. Análisis de los inhibidores del paralelismo
 
@@ -65,7 +67,7 @@ Los inhibidores principales de paralelismo que se encontraron fueron los siguien
 
 ## 5. Solución paralela
 
-*[Incluya aquí la descripción de la solución paralela.]*
+La solucion Paralela es similar a la secuencial, de igual manera le pedimos al usuario que nos de la cantidad de ubicaciones y despues utilizamos un random para definir el peso de los diferentes caminos, esta vez usamos un ciclo en paralelo para que el codigo pudiese definir de forma clara y rapida el mejor camino que tomar con respecto al peso y las ubicaciones marcada del usuario, Utilizamos los threads como representacion de las paradas que se deben hacer.
 
 ## 6. Tabla de resultados
 
@@ -79,7 +81,9 @@ Para las gráficas comparativas, las colocamos en el folder llamado _docs_, pued
 
 Este proyecto nos enseñó unos resultados que no parecen tener mucho sentido al verlos sin entender lo que está pasando en el fondo, como los algoritmos paralelos, tienen que pasar *n* número de veces para poder obtener un resultado concreto, este va a demorar unos milisegundos mas, por esto mismo.</br>
 
-Al correr el código secuencial, se está pasando una sola vez por el mismo proceso y es por esto mismo que es un código mas rápido en el sentido que su tiempo de ejecución, en algunos casos, es menor al del programa paralelo.
+Al correr el código secuencial, se está pasando una sola vez por el mismo proceso y es por esto mismo que es un código mas rápido en el sentido que su tiempo de ejecución, en algunos casos, es menor al del programa paralelo.</br>
+
+Al final notamos que el mejor es el paralelo ya que la complejidad fue notablemente disminuida a comparacion del secuencial y aunque a veces el secuencial fuera mas rapido creemos que el paralleo es mejor en la mayor cantidad de las veces 
 
 ## 9. Guía paso a paso
 
@@ -107,4 +111,5 @@ Este igual le pedirá un número para que se puedan inicializar la cantidad de v
 
 ## 10. Referencias
 
-*[Incluya aquí las referencias a sitios de interés y cualquier otra información que haya utilizado para realizar el proyecto y que le puedan ser de utilidad a otras personas que quieran usarlo como referencia]*
+https://elbauldelprogramador.com/algoritmos-de-caminos-cortos/
+

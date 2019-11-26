@@ -59,7 +59,9 @@ Para la solución secuencial de este problema, nos enfocamos en analizar un coch
 
 ## 4. Análisis de los inhibidores del paralelismo
 
-*[Incluya aquí el análisis de los inhibidores presentes en su problema, así como la solución a los mismos.]*
+Los inhibidores principales de paralelismo que se encontraron fueron los siguientes:</br>
+
+*No se modificó la sección en donde se añaden/remueven nodos debido a que le tomaría mas tiempo por la cantidad de veces que debería llevarse a cabo
 
 ## 5. Solución paralela
 

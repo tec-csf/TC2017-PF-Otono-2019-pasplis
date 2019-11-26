@@ -1,115 +1,159 @@
+/*
+ *
+ * Proyecto final
+ * 
+ * Daniel Roa       -   A01021960
+ * Christian Dalma  -   A01423166  
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>
 #include <time.h>
+// #include "PrimPar.h"
 
-#define infinity 9999
-#define MAX 20
+#define DIM 1000
+void init(void);
+void delete (int);
 
-int G[MAX][MAX], spanning[MAX][MAX], n;
+struct prims
+{
+    int edge[DIM][DIM];
+    int dim;
+    int U[DIM];
+    int total_minDist;
+    int counts;
+};
 
-int prims();
+struct prims prim;
 
 int main()
 {
-    clock_t t;
+    int ch, j, t, p_c, p_j, k, serial = 1, i;
 
-    int i, j, total_cost;
+    int minDist; //variable that holds the current maximum distance
 
-    srand(time(NULL));  
+    int newElem; //variable that holds the next node in MST int newElem;
 
-    printf("Cuántas paradas va a hacer?\n");
-    scanf("%d", &n);
+    prim.total_minDist = 0;
+    prim.counts = 0;
 
-    printf("\nIngresa el numero de paradas:\n");
+    //declaring the structs the are used by gettimeofday
+    //struct timeval tb1;
+    //struct timeval tb2;
+    //setting the minimum distance
+    minDist = 1000;
 
-    for (i = 0; i < n; i++)
-        for (j = 0; j < n; j++)
-            G[i][j] = rand()%n;
-            // scanf("%d", &G[i][j]);
+    //opterr = 0;
+    //parsing the arguments given
+
+    printf("A continuación, inserte la cantidad de paradas de su ruta:\n");
+    scanf("%d", &prim.dim);
+
+    int num = prim.dim;
+
+    srand(time(NULL));
+
+    printf("Inseta el peso del tráfico: \n");
+
+    for (i = 0; i < prim.dim; ++i)
+    {
+        for (j = 0; j < prim.dim; j++)
+        {
+            // scanf("%d", &(prim.edge[i][j]));
+            prim.edge[i][j] = rand() % num;
+
+            printf("Cost: %d ", prim.edge[i][j]);
+            printf("From %d To %d\n", i, j);
+        }
+    }
+
+    //initializing the data
 
     double start = omp_get_wtime();
+    init();
 
-    total_cost = prims();
-    printf("\nLas paradas a hacer son:\n");
-
-    for (i = 0; i < n; i++)
+    //calculating for all the nodes
+    for (k = 0; k < prim.dim - 1; k++)
     {
-        printf("\n");
-        for (j = 0; j < n; j++)
-            printf("%d --> %d\n", i+1, j+1);
-            //printf("%d\t", spanning[i][j]);
-    }
-    double finito = omp_get_wtime() - start;
+        minDist = 1000;
 
-    float time_taken = ((float)t) / CLOCKS_PER_SEC; // in seconds
+        for (i = 0; i < prim.counts; i++)
+        {
+
+
+            for (j = 0; j < prim.dim; j++)
+            {
+                //find the minimum weight
+                if (prim.edge[prim.U[i]][j] > minDist || prim.edge[prim.U[i]][j] == 0)
+                {
+                    continue;
+                }
+                else
+                {
+
+                    {
+                        minDist = prim.edge[prim.U[i]][j];
+                        newElem = j;
+                        printf("%d --> %d\n", i + 1, j + 1);
+                    }
+                }
+            }
+        }
+        prim.total_minDist += minDist;
+        prim.U[i] = newElem;
+        delete (newElem);
+
+        prim.counts++;
+    }
+
+    printf("\n");
+
+    for (i = 0; i < prim.dim; i++)
+    {
+        printf("%d ", prim.U[i] + 1);
+        if (i < prim.dim - 1)
+            printf("-> ");
+    }
+    printf("\n\n");
+
+    double finito = omp_get_wtime() - start;
 
     printf("Le tomó %.5g segundos en averiguar una solución.\n", finito);
 
-    printf("\n\nDistancia minima entre paradas = %d\n", total_cost);
+    printf("Distancia mínima entre paradas: %d\n\n", prim.total_minDist);
+    //printf("\nProgram terminates now..\n");
+
     return 0;
 }
 
-int prims()
+void init(void)
 {
-    int cost[MAX][MAX];
-    int u, v, min_distance, distance[MAX], from[MAX];
-    int visited[MAX], no_of_edges, i, min_cost, j;
 
-    //create cost[][] matrix,spanning[][]
-    for (i = 0; i < n; i++)
-        for (j = 0; j < n; j++)
-        {
-            if (G[i][j] == 0)
-                cost[i][j] = infinity;
-            else
-                cost[i][j] = G[i][j];
-            spanning[i][j] = 0;
-        }
+    int i, j;
 
-    //initialise visited[],distance[] and from[]
-    distance[0] = 0;
-    visited[0] = 1;
+    prim.total_minDist = 0;
+    prim.counts = 0;
 
-    for (i = 1; i < n; i++)
+    //initializing the U set
+    for (i = 0; i < prim.dim; i++)
+        prim.U[i] = -1;
+
+    //storing the first node into the U set
+    prim.U[0] = 0;
+    //deleting the first node
+    delete (prim.U[0]);
+    //incrementing by one the number of node that are inside the U set
+    prim.counts++;
+}
+
+void delete (int next_element)
+{
+
+    int k;
+    for (k = 0; k < prim.dim; k++)
     {
-        distance[i] = cost[0][i];
-        from[i] = 0;
-        visited[i] = 0;
+        prim.edge[k][next_element] = 0;
     }
-
-    min_cost = 0;        //cost of spanning tree
-    no_of_edges = n - 1; //no. of edges to be added
-
-    while (no_of_edges > 0)
-    {
-        //find the vertex at minimum distance from the tree
-        min_distance = infinity;
-        for (i = 1; i < n; i++)
-            if (visited[i] == 0 && distance[i] < min_distance)
-            {
-                v = i;
-                min_distance = distance[i];
-            }
-
-        u = from[v];
-
-        //insert the edge in spanning tree
-        spanning[u][v] = distance[v];
-        spanning[v][u] = distance[v];
-        no_of_edges--;
-        visited[v] = 1;
-
-        //updated the distance[] array
-        for (i = 1; i < n; i++)
-            if (visited[i] == 0 && cost[i][v] < distance[i])
-            {
-                distance[i] = cost[i][v];
-                from[i] = v;
-            }
-
-        min_cost = min_cost + cost[u][v];
-    }
-
-    return (min_cost);
 }

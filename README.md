@@ -57,7 +57,7 @@ Esperamos que este programa pueda ser usados para los tranportes publicos los cu
 
 Para la solucion Secuencial nos enfocamos en que el usuario nos pudiese proporcionar la cantidad de ubicaciones que quiere que haya despues de eso decidimos que para este algoritmo el peso seria aleatorio como lo seria el trafico normlamente, decidimos tomar primero los datos para depues de esp hacer la secuencia de un grafo Prim donde tomariamos los datos ya puestos y buscariamos el mejor camino, despues de entrar al metodo prim el progrmama imprimira la mejor solucion.</br> 
 
-Utilizamos el metodo de Grafos Prim ya que pensamos que seria el mas apropiado para esta situacion, Este algoritmo es avido con complejidad de O(V^2
+Utilizamos el metodo de Grafos Prim ya que pensamos que seria el mas apropiado para esta situacion, Este algoritmo es avido con complejidad de O(V^2)
 
 ## 4. Análisis de los inhibidores del paralelismo
 

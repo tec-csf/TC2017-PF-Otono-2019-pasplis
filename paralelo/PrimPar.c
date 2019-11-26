@@ -48,9 +48,13 @@ int main()
 
     int num = prim.dim;
 
+    int id = omp_get_thread_num();
+
     srand(time(NULL));
 
-    printf("Inseta el peso del tráfico: \n");
+    printf("Inserta el peso del tráfico: \n");
+
+    printf("Hilo %d\n", id);
 
     for (i = 0; i < prim.dim; ++i)
     {

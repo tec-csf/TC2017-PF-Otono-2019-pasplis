@@ -1,4 +1,4 @@
-# *Las paradas de un camión*
+# *Camion Eficiente*
 ---
 #### Materia: *Análisis y Diseño de Algoritmos (TC2017)*
 

@@ -1,4 +1,4 @@
-# *Camion Eficiente*
+# *Transporte Eficiente*
 ---
 #### Materia: *Análisis y Diseño de Algoritmos (TC2017)*
 
